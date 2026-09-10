@@ -68,14 +68,16 @@ button[type="button"]:active {
 
 button[type="submit"] {
   background-color: green;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
 }
 
-button[type="submit"]:hover,
-button[type="submit"]:active {
-  background-color: #895cce;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+/*button[type="submit"]:hover,*/
+/*button[type="submit"]:active {*/
+/*  background-color: #895cce;*/
+/*  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);*/
+/*}*/
+
+button[type="submit"]:disabled {
+  cursor: not-allowed;
 }
 
 @media (min-width: 768px) {

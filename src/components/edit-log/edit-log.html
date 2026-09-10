@@ -8,7 +8,7 @@
     </p>
     <p class="actions">
       <button type="button" (click)="onCancelEditLog()">Cancel</button>
-      <button [disabled]="isValid()" type="submit">Edit</button>
+      <button [disabled]="!isFormValid()" type="submit">Edit</button>
     </p>
   </form>
 </dialog>
