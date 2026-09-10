@@ -1,0 +1,12 @@
+<nav>
+  <a [routerLink]="['..','add']">Add</a>
+  <a [routerLink]="['..','subtract']">Subtract</a>
+  <a [routerLink]="['..','multiply']">Multiply</a>
+  @if(url[0] === 'dictionary') {
+    <a [routerLink]="['..','key-value']">key-value</a>
+  }
+</nav>
+
+<button>
+  Click
+</button>

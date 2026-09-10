@@ -1,0 +1,14 @@
+<div class="backdrop" (click)="onCancelEditLog()"></div>
+<dialog open>
+  <h2>Edit Log</h2>
+  <form (ngSubmit)="onSubmit()">
+    <p>
+      <label for="due-date">Log</label>
+      <input required type="text" id="log" name="log" [formControl]="log" />
+    </p>
+    <p class="actions">
+      <button type="button" (click)="onCancelEditLog()">Cancel</button>
+      <button [disabled]="isValid()" type="submit">Edit</button>
+    </p>
+  </form>
+</dialog>

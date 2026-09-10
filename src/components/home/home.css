@@ -1,0 +1,21 @@
+div {
+  margin-top: 40px;
+}
+
+input {
+  color: black;
+  padding: 5px;
+  margin: 5px;
+  border: 2px solid black;
+  border-radius: 7px;
+}
+
+span {
+  font-weight: bold;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+strong {
+  margin-left: 10px;
+}

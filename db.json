@@ -1,0 +1,33 @@
+{
+  "routeHistory": [
+    {
+      "route": "/dictionary/multiply",
+      "id": "4buIBcm16YQ"
+    },
+    {
+      "route": "/dictionary/add",
+      "id": "J-FNbXUE5-o"
+    },
+    {
+      "route": "/operation/add",
+      "id": "T6l7GGLWtHU"
+    },
+    {
+      "route": "/operation/subtract",
+      "id": "KSpYYvBohvg"
+    },
+    {
+      "route": "/dictionary/add",
+      "id": "6NEabxJZopU"
+    },
+    {
+      "route": "/operation/subtract",
+      "id": "3KqIL-eEGPA"
+    },
+    {
+      "route": "/operation/add",
+      "id": "UF1umxzKI9Q"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
