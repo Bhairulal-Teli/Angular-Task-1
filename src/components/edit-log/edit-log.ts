@@ -1,6 +1,7 @@
-import { Component, computed, input, output, signal } from '@angular/core';
+import { Component, computed, inject, input, output, signal } from '@angular/core';
 import {
   AbstractControl,
+  AsyncValidatorFn,
   FormControl,
   FormsModule,
   ReactiveFormsModule,
@@ -8,6 +9,10 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { GetRoutesHistory, HttpTest } from '../http-test';
+import { validateAsync } from '@angular/forms/signals';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-log',
@@ -17,13 +22,16 @@ import {
 })
 export class EditLog {
   cancel = output<void>();
-  route = input.required<string>();
-  isFormValid= signal(true);
+  route = input.required<GetRoutesHistory>();
+  isFormValid = signal(true);
 
-  log = new FormControl('', Validators.required);
+  private http = inject(HttpTest);
+  private router = inject(Router);
+
+  log = new FormControl('', [Validators.required, this.routeValidatorUrl()]);
 
   ngOnInit() {
-    this.log.setValue(this.route());
+    this.log.setValue(this.route().route);
   }
 
   onCancelEditLog() {
@@ -31,14 +39,35 @@ export class EditLog {
   }
 
   onSubmit() {
-    console.log(this.log.value);
+    let path = `${this.log.value}`;
+    console.log(path);
+    let isRouteValid = this.router.config.some((route) => {
+      console.log(route);
+      return route.path === path;
+    });
+
+    if(!isRouteValid) {
+      console.log('Invalid');
+    } else {
+      console.log('Valid');
+    }
+
+    // this.http.getRouteForUpdateCheck(`http://localhost:4200${this.log.value}`).subscribe({
+    //   next: () => console.log('success'),
+    //   error: (err) => console.log(err),
+    // });
+
+    this.http.updateRoute(`/${this.route().id}`, this.log.value!).subscribe((res) => {
+      this.http.getRoutes().subscribe((res) => {
+        this.http.logsDataService.set(res);
+      });
+    });
+
     this.cancel.emit();
   }
 
-  routeValidator(): ValidatorFn {
-    return (
-      control: AbstractControl
-    ): ValidationErrors | null => {
+  routeValidatorUrl(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
       const value = control.value;
 
       if (!value) {
@@ -50,4 +79,9 @@ export class EditLog {
     };
   }
 
+  // routeValidatorData(): AsyncValidatorFn {
+  //   return (control: AbstractControl): Observable<ValidationErrors | null> => {
+  //     return null;
+  //   }
+  // }
 }

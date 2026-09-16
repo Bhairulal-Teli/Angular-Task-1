@@ -21,14 +21,23 @@ export const routes: Routes = [
       {
         path: 'add',
         component: Home,
+        data: {
+          operation: 'add',
+        },
       },
       {
         path: 'subtract',
         component: Home,
+        data: {
+          operation: 'subtract',
+        },
       },
       {
         path: 'multiply',
         component: Home,
+        data: {
+          operation: 'multiply',
+        },
       },
     ],
   },
@@ -59,5 +68,5 @@ export const routes: Routes = [
       },
     ],
   },
-  {path: 'logs', component: Logs}
+  { path: 'logs', component: Logs },
 ];

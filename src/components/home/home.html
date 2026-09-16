@@ -1,10 +1,11 @@
 <app-operation-navbar />
 
 <div>
-  <input type="number">
-  <span>+</span>
-  <input type="number">
-  <strong>RESULT</strong>
+  <input type="number" [formField]="operationForm.firstNo">
+  <span>{{operationSymbol()}}</span>
+  <input type="number" [formField]="operationForm.secondNo">
+  <strong>{{currentResult()}}</strong>
 </div>
+
 
 

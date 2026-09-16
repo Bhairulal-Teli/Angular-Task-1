@@ -1,10 +1,10 @@
 @if (isLogEditing()) {
-  <app-edit-log (cancel)="onCancelEditLog()" [route]="editLogRoute()" />
+  <app-edit-log (cancel)="onCancelEditLog()" [route]="editLogRoute()"/>
 }
 
 <ol>
   @for (data of logsData(); track data.id) {
     <li>{{ data.route }}</li>
-    <button (click)="onEditLog(data.route)">Edit</button>
+    <button (click)="onEditLog(data)">Edit</button>
   }
 </ol>

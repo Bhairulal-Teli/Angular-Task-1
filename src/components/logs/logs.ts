@@ -9,11 +9,19 @@ import { EditLog } from '../edit-log/edit-log';
   styleUrl: './logs.css',
 })
 export class Logs {
+  constructor() {
+    console.log('log constructor');
+  }
   isLogEditing = signal(false);
   private httpService = inject(HttpTest);
 
-  logsData = signal<GetRoutesHistory[]>([]);
-  editLogRoute = signal('');
+  // logsData = signal<GetRoutesHistory[]>([]);
+  logsData = this.httpService.logsDataService;
+
+  editLogRoute = signal<GetRoutesHistory>({
+    id: '',
+    route: '',
+  });
 
   ngOnInit() {
     this.httpService.getRoutes().subscribe((data) => {
@@ -21,7 +29,8 @@ export class Logs {
     });
   }
 
-  onEditLog(data: string) {
+  onEditLog(data: GetRoutesHistory) {
+    // console.log("Error here: ", data);
     this.editLogRoute.set(data);
     this.isLogEditing.set(true);
   }

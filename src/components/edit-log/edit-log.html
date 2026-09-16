@@ -1,5 +1,11 @@
 <div class="backdrop" (click)="onCancelEditLog()"></div>
 <dialog open>
+  @if(log.hasError('required')) {
+    <p>This field is required</p>
+  }
+  @if(log.hasError('invalidRoute')) {
+    <p>Please enter a valid URL</p>
+  }
   <h2>Edit Log</h2>
   <form (ngSubmit)="onSubmit()">
     <p>
@@ -8,7 +14,7 @@
     </p>
     <p class="actions">
       <button type="button" (click)="onCancelEditLog()">Cancel</button>
-      <button [disabled]="!isFormValid()" type="submit">Edit</button>
+      <button [disabled]="!isFormValid() || log.hasError('invalidRoute') || log.hasError('required')" type="submit">Edit</button>
     </p>
   </form>
 </dialog>
